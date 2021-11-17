@@ -20,10 +20,12 @@ st.subheader('Data analysis')
 
 #2 upload dataset
 upload=st.file_uploader('Please upload a dataset for analysis:(in CSV format)',type='csv')
-
-if upload is not None:
-    df = pd.read_csv(upload,parse_dates=['GamingDt'])
-
+@st.cache
+def file():
+    if upload is not None:
+        df = pd.read_csv(upload,parse_dates=['GamingDt'])
+        return df
+df=file()
 
 #Date range max/min   
        
